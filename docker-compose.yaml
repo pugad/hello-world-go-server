@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  hello:
+    build: .
+    command: ["go","run","./helloworld.go"]
+    ports:
+      - 127.0.0.1:8000:80

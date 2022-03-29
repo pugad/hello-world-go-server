@@ -1,0 +1,57 @@
+# modify this file as you see fit
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-service
+  labels:
+    app: hello-world-service
+  # for baremetal setups using metallb:
+  annotations:
+    metallb.universe.tf/address-pool: hello-world-go-server-ip
+spec:
+  selector:
+    app: hello-world-go-server
+  type: LoadBalancer
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-go-server
+  labels:
+    app: hello-world-go-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-go-server
+  template:
+    metadata:
+      labels:
+        app: hello-world-go-server
+    spec:
+      containers:
+        - name: hello-world-go-server
+          image: pugad/hello-world-go-server:0.0.1 # you can build your own image
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+---
+# metallb config -- modify the ip address pool/s as needed
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: hello-world-go-server-ip
+      protocol: layer2
+      addresses:
+      - 192.168.1.10-192.168.1.20
+      auto-assign: false

@@ -33,7 +33,7 @@ Install Docker, then run:
     docker-compose up -d
 
 ### Kubernetes
-<i>Note: hello-world-k8s.yaml contains configs for metallb (baremetal k8s load balancer) by default. Make sure to edit/omit it according to your needs.</i>
+<i>Note: hello-world-k8s.yaml contains configs for metallb (as load balancer for bare metal deployments). Make sure to edit/omit it according to your needs.</i>
   
 Step 1. Set up your K8s cluster (e.g. minikube, microk8s, etc.)
   

@@ -43,7 +43,7 @@ Step 3. Deploy
   
     kubectl apply -f hello-world-k8s.yaml -n development
 
-Step 4. Try to access the allocated IP address (or your router's IP)
+Step 4. Try to access the IP address allocated to it
 
     kubectl get svc -A
   

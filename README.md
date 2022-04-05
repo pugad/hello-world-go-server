@@ -2,7 +2,7 @@ A super simple hello world server written in Go.
 
 
 # What for?
-<li> Testing your K8s setup (baremetal or otherwise)
+<li> Testing your K8s setup (bare metal or otherwise)
 <li> Testing connectivity, firewall or routing rules in a cluster
 <li> Testing your CI/CD pipeline
 <li> Just about anything you might need a standalone test web server for 🍕
